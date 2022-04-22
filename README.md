@@ -1,4 +1,4 @@
-# PokerDesk
+# PokerTable
 Create a place to play poker
 
 ###########
