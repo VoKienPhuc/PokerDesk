@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 
 names = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+name_call = ['Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine',
+             'Ten', 'Jack', 'Queen', 'King', 'Ace']
 suits = ['S', 'C', 'D', 'H']
  
     
@@ -14,6 +16,13 @@ class Card:
         self.suit = suit
         
     def __str__(self):
+        
+        # Looking for name_call
+        index = 0
+        index = names.index(self.name)
+        name = name_call[index]
+        
+        # Looking for Suit
         if self.suit == 'S':
             suit = 'Spade'
         elif self.suit == 'C':
@@ -23,7 +32,7 @@ class Card:
         else:
             suit = 'Heart'
             
-        return "The {} of {}".format(self.name, suit)
+        return "The {} of {}".format(name, suit)
         
 
 class Deck(ABC):
