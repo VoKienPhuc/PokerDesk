@@ -1,20 +1,20 @@
 """ Scripts to run unit testing"""
 
-import unittest
 import sys
+sys.path.append('D:\Things\Github\PokerDesk')
+
+import unittest
 from unittest import TestCase
 
-sys.path.append('D:\Things\Github\PokerDesk')
-from Table.Deck import Card
+from UnitTests.TestCard import *
     
 class Testing(TestCase):
     
     def test_card(self):
         
-        from TestCard import TestCard
+        pass
+        # from TestCard import TestCard
+        # from TestCard import TestDeck
     
 if __name__ == '__main__':
-    unittest.main(verbosity = 0, exit = False, catchbreak = True, buffer = True)
-# else:
-#     suite = unittest.TestLoader().loadTestsFromTestCase(TestSprint1)
-#     unittest.TextTestRunner(verbosity = 0).run(suite)
+    unittest.main(verbosity = 2, exit = False, catchbreak = True, buffer = True)

@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 import random
 
+
 class Player(ABC):
     
     _type = ''
@@ -51,13 +52,13 @@ class Dealer:
         random.shuffle(self._deck.cards)
         return self._deck
         
+    def draw(self, number):
+        pass
+    
     def deal(self):
         pass
     
-    def burn_card(self):
-        pass
-    
-    def check(self):
+    def check(self, community_cards):
         pass    
         
     def collect_cards(self):
