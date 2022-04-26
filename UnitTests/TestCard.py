@@ -3,7 +3,7 @@ import sys
 from unittest import TestCase
 
 sys.path.append('D:\Things\Github\PokerDesk')
-from Table.Deck import Card, BasicDeck
+from Table.Deck import Card, BasicDeck, CommunityTable
     
 class TestCard(TestCase):
     
@@ -149,4 +149,82 @@ class TestDeck(TestCase):
             self.assertEqual(basic_deck.number_of_card, data[i][2])
    
     
+class TestCommunityTable(TestCase):
+    
+    def test_check_showed_cards(self):
+        
+        data = [('2', 'S', "The Two of Spade"),
+                ('4', 'H', "The Four of Heart"),
+                ('8', 'C', "The Eight of Club"),
+                ('6', 'S', "The Six of Spade"),
+                ('Q', 'D', "The Queen of Diamond")]
+        
+        testing = [(3, 3),
+                   (2, 2),
+                   (1, 1),
+                   (4, 4),
+                   (0, 0),
+                   (5, 5),
+                   (9, 0),
+                   (-4, 0)]
+        
+        list_cards = []
+        for i in range(0, len(data)):
+            card = Card(data[i][0], data[i][1])
+            list_cards.append(card)
+            
+        table = CommunityTable()
+        for i in range(0, len(testing)):
+            table.set_cards(list_cards)
+            table.show_card(testing[i][0])
+            self.assertEqual(len(table.check_showed_cards()), testing[i][1])
+   
+    def test_show_card(self):
+        
+        data = [('2', 'S', "The Two of Spade"),
+                ('4', 'H', "The Four of Heart"),
+                ('8', 'C', "The Eight of Club"),
+                ('6', 'S', "The Six of Spade"),
+                ('Q', 'D', "The Queen of Diamond")]
+        
+        testing = [(3, 3),
+                   (2, 2),
+                   (1, 1),
+                   (4, 4),
+                   (0, 0),
+                   (5, 5),
+                   (9, 0),
+                   (-4, 0)]
+        
+        list_cards = []
+        for i in range(0, len(data)):
+            card = Card(data[i][0], data[i][1])
+            list_cards.append(card)
+            
+        table = CommunityTable()
+        for i in range(0, len(testing)):
+            table.set_cards(list_cards)
+            table.show_card(testing[i][0])
+            self.assertEqual(len(table.show_cards), testing[i][1])
+   
+    def test_add_cards(self):
+        
+        data = [('2', 'S', "The Two of Spade"),
+                ('4', 'H', "The Four of Heart"),
+                ('8', 'C', "The Eight of Club"),
+                ('6', 'S', "The Six of Spade"),
+                ('Q', 'D', "The Queen of Diamond"),
+                ('3', 'H', "The Three of Heart"),
+                ('10', 'D', "The Ten of Diamond"),
+                ('K', 'H', "The King of Heart"),
+                ('A', 'F', 'The Ace of None'),
+                ('J', '1', 'The Jack of None')]
+        
+        table = CommunityTable()
+        for i in range(0, len(data)):
+            table.reset()
+            card = Card(data[i][0], data[i][1])
+            table.set_cards([card])
+            self.assertEqual(table._cards[0].__str__(), data[i][2])
+   
     

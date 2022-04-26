@@ -31,8 +31,10 @@ class Card:
             suit = 'Club'
         elif self.suit == 'D':
             suit = 'Diamond'
-        else:
+        elif self.suit == 'H':
             suit = 'Heart'
+        else:
+            suit = 'None'
             
         return "The {} of {}".format(name, suit)
         
@@ -44,6 +46,10 @@ class Deck(ABC):
     
     @abstractmethod
     def reset(self):
+        pass
+    
+    @abstractmethod
+    def __str__(self):
         pass
     
     # Add a card to deck
@@ -132,7 +138,7 @@ class Deck(ABC):
                 return index
             
         return None
-                    
+    
 
 class BasicDeck(Deck):
     
@@ -154,18 +160,29 @@ class BasicDeck(Deck):
                 card = Card(name, suit)
                 self._cards.append(card)
     
+    def __str__(self):
+        return "This is a Basic Deck"
 
-class CommunityCards:
+class CommunityTable:
     
-    number_of_opencard = 0
     _cards = []
     show_cards = []
     
+    def reset(self):
+        
+        self._cards = []
+        self.show_cards = []
+    
     def check_showed_cards(self):
-        pass
         
-    def show_a_card(self):
-        pass
+        return self.show_cards
         
-    def add_cards(self, cards):
+    def show_card(self, number: int):
+        
+        if ((len(self.show_cards) + number) <= len(self._cards)) and number>0:
+            for _ in range(0, number):
+                self.show_cards.append(self._cards[len(self.show_cards)])
+        
+    def set_cards(self, cards: list):
         self._cards = cards
+        self.show_cards = []
