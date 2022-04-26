@@ -10,7 +10,7 @@ from Players.Players import *
 
 # Chose a deck
 basic_deck = BasicDeck()
-common_cards = CommunityCards()
+common_cards = CommunityTable()
 
 # Get a dealer
 dealer = Dealer()

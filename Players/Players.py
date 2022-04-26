@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 import random
 
+
 class Player(ABC):
     
     _type = ''
@@ -41,32 +42,62 @@ class Dealer:
     
     _number_of_player = 1
     _deck = None
+    _community_table = None
     
-    status = ''
+    status = 'Ready'
     
-    def give_deck(self, deck):
+    def set_deck(self, deck):
         self._deck = deck
        
+    def set_community_table(self, community_table):
+        
+        self._community_table = community_table
+        
+    def set_number_of_player(self, number):
+        
+        self._number_of_player = abs(number)
+        
     def shuffle(self):
-        random.shuffle(self._deck.cards)
+        random.shuffle(self._deck._cards)
         return self._deck
         
-    def deal(self):
-        pass
+    def draw(self, number_of_card):
+        
+        list_cards = self._deck.get_top_cards(number_of_card)
+        return list_cards
     
-    def burn_card(self):
-        pass
+    def deal(self):
+        
+        list_of_cards = []
+        
+        if self._number_of_player <= 10:
+            
+            for _ in range(0, self._number_of_player):
+                list_of_cards.append(self.draw(2))
+                
+        commnity_cards = self.draw(5)
+        self._community_table.set_cards(commnity_cards)
+        list_of_cards.append(commnity_cards)
+            
+        return list_of_cards
     
     def check(self):
-        pass    
+        
+        number_of_showed_card = len(self._community_table.show_cards)
+        if number_of_showed_card == 0:
+            self._community_table.show_card(3)
+        elif number_of_showed_card == 3:
+            self._community_table.show_card(1)
+        elif number_of_showed_card == 4:
+            self._community_table.show_card(1)
         
     def collect_cards(self):
-        pass    
         
-    def check_number_of_player(self):
-        pass    
+        self._deck.reset()
+        self._community_table.reset() 
         
     def __str__(self):
-        print(" Dealer is " + str(self.status))
+        
+        return "Dealer is " + str(self.status)
     
     
