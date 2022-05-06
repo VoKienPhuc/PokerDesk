@@ -5,10 +5,11 @@ sys.path.append('D:\Things\Github\PokerDesk')
 
 import unittest
 
-from UnitTests.TestCard import TestCard
-from UnitTests.TestCard import TestDeck
-from UnitTests.TestCard import TestCommunityTable
-from UnitTests.TestPlayers import TestDealer
+# from UnitTests.TestCard import TestCard
+# from UnitTests.TestCard import TestDeck
+# from UnitTests.TestCard import TestCommunityTable
+# from UnitTests.TestPlayers import TestDealer
+from UnitTests.TestPlayers import TestPlayer
 
 if __name__ == '__main__':
     unittest.main(verbosity = 2, exit = False, catchbreak = True, buffer = True)
